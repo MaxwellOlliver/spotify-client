@@ -1,3 +1,4 @@
-const token: string = '';
+const token: string =
+  'BQAqlR242japdyvNTTm7FwHCCRblWm94iv8dKZYQ_gHNgvJOROJHwpeHZeDcxNVxE-f7zG51qk4gcv_QjYQvSidtKsbHWEEQz2WkJ8cH-ZaIiurYBtwCJo0JnVmtZWc8U02q2wijTJ6pZ_Ca-nuLL4hkkzCLho5IKga3Mhbgr85wAmvAVnetSEoXJdAIglCOCMw0cKvFWoRNYdTLeYdEeC7slf_Izhbukx_loVEUifHqiVeo3Cx1M8oaG4PqJyuxmGuiaBGyamWxXybJKZgV0yiY3YAmYavOcJ1R4v8';
 
-export { token }
+export { token };

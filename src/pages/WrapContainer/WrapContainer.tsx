@@ -39,6 +39,27 @@ const WrapContainer: React.FC = () => {
           <li>
             <span>Best of K-Pop</span>
           </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
+          <li>
+            <span>Best of K-Pop</span>
+          </li>
         </ul>
         <Player />
       </aside>

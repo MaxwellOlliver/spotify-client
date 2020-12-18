@@ -69,6 +69,7 @@ export const Container = styled.div`
       justify-content: space-between;
       align-items: center;
       margin-top: 20px;
+      margin-bottom: 10px;
 
       span {
         text-transform: uppercase;
@@ -83,6 +84,9 @@ export const Container = styled.div`
     ul.playlists {
       width: 100%;
       height: 100%;
+
+      overflow: auto;
+      margin-bottom: 10px;
 
       li {
         width: 100%;
@@ -126,10 +130,12 @@ export const Container = styled.div`
 
       span.music-title {
         margin-bottom: 5px;
+        text-align: center;
       }
 
       span.artists {
         font-size: 12px;
+        text-align: center;
       }
 
       .controllers {
@@ -138,6 +144,7 @@ export const Container = styled.div`
         display: flex;
         justify-content: space-around;
         align-items: center;
+        margin-bottom: 10px;
 
         .repeat {
           position: relative;
@@ -171,8 +178,83 @@ export const Container = styled.div`
           }
 
           &:hover {
-            filter: brightness(0.9);
+            filter: brightness(0.8);
           }
+        }
+      }
+      .slider-container {
+        width: 100%;
+        position: relative;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+
+        span.bar {
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 3px;
+          border-radius: 5px;
+          background-color: #ffffff81;
+          overflow: hidden;
+
+          .fill {
+            display: block;
+            width: 30%;
+            height: 100%;
+            background-color: #fff;
+          }
+        }
+
+        input {
+          position: relative;
+          width: calc(100% + 13px);
+          border-radius: 2px;
+          z-index: 2;
+          -webkit-appearance: none;
+          appearance: none;
+          height: 3px;
+          border-radius: 5px;
+          background: transparent;
+          cursor: pointer;
+          overflow: visible;
+
+          transition: all 0.3s;
+        }
+
+        &:hover input#time::-webkit-slider-thumb {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        input#time::-webkit-slider-thumb {
+          transform: scale(0);
+          opacity: 0;
+        }
+
+        input::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 13px;
+          height: 13px;
+          border-radius: 50%;
+          background-color: #fff;
+          cursor: pointer;
+
+          box-shadow: 0 0 0 0 #ffffff81;
+          transition: all 0.3s;
+
+          margin-left: -6.5px;
+        }
+
+        input::-webkit-slider-thumb:hover {
+          box-shadow: 0 0 0 5px #ffffff34;
+        }
+
+        input:active::-webkit-slider-thumb {
+          box-shadow: 0 0 0 10px #ffffff5e;
         }
       }
     }

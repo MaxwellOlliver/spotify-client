@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import theme from '../theme';
 
 export const Global = createGlobalStyle`
   * {
@@ -13,5 +14,21 @@ export const Global = createGlobalStyle`
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     color: #fff;
     font-size: 14px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background: #5f5f6b;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #40404a;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #52525e;
   }
 `;
