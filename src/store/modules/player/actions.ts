@@ -4,7 +4,6 @@ export enum PlayerAction {
   PAUSE = '@player/PAUSE',
   SHUFFLE = '@player/SHUFFLE',
   REPEAT = '@player/REPEAT',
-  SET_DEVICES = '@player/SET_DEVICES',
   SET_SELECTED_DEVICE = '@player/SET_SELECTED_DEVICE',
   SET_VOLUME = '@player/SET_VOLUME',
   SET_MUSIC = '@player/SET_MUSIC',

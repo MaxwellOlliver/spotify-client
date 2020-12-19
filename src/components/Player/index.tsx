@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { FiPause, FiPlay, FiSkipBack, FiSkipForward } from 'react-icons/fi';
 import { BiRepeat, BiShuffle } from 'react-icons/bi';
@@ -62,14 +62,14 @@ const Player: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setInterval(async () => getCurrentlyMusic(), 1000);
+    const t = setInterval(getCurrentlyMusic, 2000);
+
+    return () => clearInterval(t);
   }, []);
 
   useEffect(() => {
     if (fillRef.current && inputRef.current) {
-      const value = Math.round(
-        (100 * player.progress) / player.music.duration_ms
-      );
+      const value = (100 * player.progress) / player.music.duration_ms;
 
       fillRef.current.style.width = `${value}%`;
       inputRef.current.value = String(value);
@@ -120,7 +120,7 @@ const Player: React.FC = () => {
     });
   }
 
-  async function getCurrentlyMusic(): Promise<void> {
+  const getCurrentlyMusic = async () => {
     const { data: currentlyMusic }: any = await Spotify({
       method: 'get',
       url: `/me/player/currently-playing?market=BR`,
@@ -130,12 +130,11 @@ const Player: React.FC = () => {
       type: PlayerAction.SET_MUSIC,
       payload: { music: currentlyMusic.item },
     });
-
     dispatch({
       type: PlayerAction.SET_PROGRESS,
       payload: { progress: currentlyMusic.progress_ms },
     });
-  }
+  };
 
   async function repeat(): Promise<void> {
     const state =

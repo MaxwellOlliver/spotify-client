@@ -74,6 +74,7 @@ export const Container = styled.div`
       span {
         text-transform: uppercase;
         color: rgba(100, 100, 100, 30);
+        font-size: 12px;
       }
 
       svg {
@@ -102,6 +103,12 @@ export const Container = styled.div`
         margin-bottom: 10px;
         background-color: ${theme.PRIMARY};
         cursor: pointer;
+
+        span {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
 
         &:hover {
           filter: brightness(0.95);
@@ -202,7 +209,7 @@ export const Container = styled.div`
 
           .fill {
             display: block;
-            width: 30%;
+            width: 0%;
             height: 100%;
             background-color: #fff;
           }
@@ -293,6 +300,14 @@ export const Container = styled.div`
           margin-right: 10px;
         }
       }
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
   }
 `;

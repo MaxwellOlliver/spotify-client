@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   FiClock,
   FiHome,
@@ -7,14 +8,37 @@ import {
   FiSkipForward,
   FiStar,
 } from 'react-icons/fi';
-import { BiRepeat, BiShuffle } from 'react-icons/bi';
 
 import { Container } from './styles';
 import logo from '../../assets/logo.png';
-import profile from '../../assets/14199328_601843183330426_5079185537521042695_n.jpg';
 import Player from '../../components/Player';
+import { Spotify } from '../../services/spotifyApi';
+import Routes from './routes';
+import Controllers from '../../components/Controllers';
 
 const WrapContainer: React.FC = () => {
+  const [user, setUser] = useState<any>(null);
+  const [playlists, setPlaylists] = useState([]);
+
+  const getResources = async () => {
+    const { data: user }: any = await Spotify({
+      method: 'get',
+      url: '/me',
+    });
+
+    const { data: playlists }: any = await Spotify({
+      method: 'get',
+      url: `/users/${user?.id}/playlists`,
+    });
+
+    setPlaylists(playlists.items);
+    setUser(user);
+  };
+
+  useEffect(() => {
+    getResources();
+  }, []);
+
   return (
     <Container>
       <aside>
@@ -36,30 +60,11 @@ const WrapContainer: React.FC = () => {
           <FiPlus color="#fff" size={18} />
         </div>
         <ul className="playlists">
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
-          <li>
-            <span>Best of K-Pop</span>
-          </li>
+          {playlists.map((playlist: any) => (
+            <li key={playlist.id}>
+              <span>{playlist.name}</span>
+            </li>
+          ))}
         </ul>
         <Player />
       </aside>
@@ -67,11 +72,14 @@ const WrapContainer: React.FC = () => {
         <nav>
           <input type="text" className="search" placeholder="Pesquisar..." />
           <div className="profile">
-            <img src={profile} alt="profile" />
-            <span>Maxwell Olliver</span>
+            <img src={user?.images[0]?.url} alt="profile" />
+            <span>{user?.display_name}</span>
           </div>
         </nav>
-        <div className="content"></div>
+        <div className="content">
+          <Controllers />
+          <Routes />
+        </div>
       </div>
     </Container>
   );

@@ -13,12 +13,13 @@ const initialState = {
   shuffle: false,
   volume: 0,
   music: {},
+  progress: 0,
 };
 
 export function playerReducer(state: any = initialState, action: PAction): any {
   switch (action.type) {
     case PlayerAction.SET_CURRENTLY_PLAYER:
-      return { ...state, ...action.payload };
+      return { ...action.payload };
 
     case PlayerAction.PLAY:
       return { ...state, is_playing: true };
@@ -35,9 +36,6 @@ export function playerReducer(state: any = initialState, action: PAction): any {
 
     case PlayerAction.SHUFFLE:
       return { ...state, shuffle: action.payload.shuffle };
-
-    case PlayerAction.SET_DEVICES:
-      return { ...state, devices: action.payload.devices };
 
     case PlayerAction.SET_MUSIC:
       return { ...state, music: action.payload.music };
