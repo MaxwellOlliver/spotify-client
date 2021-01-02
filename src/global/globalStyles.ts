@@ -16,8 +16,18 @@ export const Global = createGlobalStyle`
     font-size: 14px;
   }
 
+  button {
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover {
+      filter: brightness(0.9)
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 8px;

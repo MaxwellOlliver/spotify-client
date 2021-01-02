@@ -62,7 +62,7 @@ const Player: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const t = setInterval(getCurrentlyMusic, 2000);
+    const t = setInterval(getCurrentlyMusic, 3000);
 
     return () => clearInterval(t);
   }, []);
@@ -134,6 +134,11 @@ const Player: React.FC = () => {
       type: PlayerAction.SET_PROGRESS,
       payload: { progress: currentlyMusic.progress_ms },
     });
+    if (currentlyMusic.is_playing) {
+      dispatch({ type: PlayerAction.PLAY });
+    } else {
+      dispatch({ type: PlayerAction.PAUSE });
+    }
   };
 
   async function repeat(): Promise<void> {
