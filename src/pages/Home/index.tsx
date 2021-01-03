@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Playlist from '../../components/Playlist';
 import { Spotify } from '../../services/spotifyApi';
 
@@ -37,6 +38,32 @@ const Home: React.FC = () => {
   useEffect(() => {
     getResources();
   }, []);
+
+  const playFpPlaylist = async () => {
+    await Spotify({
+      method: 'put',
+      url: '/me/player/play',
+      data: {
+        context_uri: resources.featured_playlist?.uri || null,
+      },
+    });
+  };
+
+  const goToEnd = (id: string) => {
+    const ul = document.querySelector(`#${id}`);
+
+    if (ul) {
+      ul.scrollLeft = ul.scrollWidth;
+    }
+  };
+
+  const goToStart = (id: string) => {
+    const ul = document.querySelector(`#${id}`);
+
+    if (ul) {
+      ul.scrollLeft -= ul.scrollWidth;
+    }
+  };
   return (
     <>
       <FeaturedPlaylist>
@@ -64,16 +91,30 @@ const Home: React.FC = () => {
               {resources.featured_playlist?.description}
             </span>
 
-            <button>PLAY</button>
+            <button onClick={playFpPlaylist}>PLAY</button>
           </div>
         </div>
       </FeaturedPlaylist>
       <Sections>
         <Section>
-          <h3 className="title">My playlists</h3>
-          <ul className="items">
+          <div className="title">
+            <h3 className="title">My playlists</h3>
+            <div className="chevrons">
+              <FiChevronLeft
+                size={25}
+                color="#fff"
+                onClick={() => goToStart('section_my-playlists-ul')}
+              />
+              <FiChevronRight
+                size={25}
+                color="#fff"
+                onClick={() => goToEnd('section_my-playlists-ul')}
+              />
+            </div>
+          </div>
+          <ul className="items" id="section_my-playlists-ul">
             {resources.playlists?.map((p) => (
-              <li>
+              <li key={p.id}>
                 <Playlist playlist={p} />
               </li>
             ))}

@@ -14,6 +14,7 @@ export const Global = createGlobalStyle`
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     color: #fff;
     font-size: 14px;
+    background-color: ${theme.SECONDARY}
   }
 
   button {

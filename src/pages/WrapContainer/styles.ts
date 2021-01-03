@@ -287,6 +287,7 @@ export const Container = styled.div`
         border-radius: 25px;
         padding: 0 15px;
         color: #333;
+        background-color: #fff;
       }
 
       .profile {
@@ -304,6 +305,7 @@ export const Container = styled.div`
 
     .content {
       width: 100%;
+      max-width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;

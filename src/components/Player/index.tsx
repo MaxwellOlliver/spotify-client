@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { FiPause, FiPlay, FiSkipBack, FiSkipForward } from 'react-icons/fi';
 import { BiRepeat, BiShuffle } from 'react-icons/bi';

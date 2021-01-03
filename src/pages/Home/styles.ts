@@ -83,6 +83,8 @@ export const FeaturedPlaylist = styled.div`
 `;
 
 export const Sections = styled.div`
+  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   padding: 60px;
@@ -94,20 +96,44 @@ export const Section = styled.section`
   flex-direction: column;
   margin-bottom: 25px;
 
-  h3 {
-    font-size: 25px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
+
+    .chevrons {
+      display: flex;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+
+    h3 {
+      font-size: 25px;
+    }
   }
 
   ul.items {
     display: flex;
-    overflow: auto;
+    overflow: hidden;
+    list-style: none;
+    scroll-behavior: smooth;
 
     li {
-      img {
-        width: 150px;
+      display: flex;
+      width: calc(100% / 5 - 15px);
+      min-width: calc(100% / 5 - 15px);
+      margin-right: 15px;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    ul.items {
+      li {
+        min-width: 170px;
       }
-      margin-right: 10px;
     }
   }
 `;

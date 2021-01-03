@@ -31,8 +31,6 @@ const WrapContainer: React.FC = () => {
       url: `/users/${user?.id}/playlists`,
     });
 
-    console.log(playlists);
-
     setPlaylists(playlists.items);
     setUser(user);
   };
