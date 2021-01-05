@@ -28,6 +28,7 @@ export const Container = styled.div`
   background-color: ${theme.PRIMARY};
   display: flex;
   border-radius: 8px;
+  z-index: 9999;
 
   .volume,
   .devices {
