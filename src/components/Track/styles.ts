@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ hover: boolean }>`
+export const Container = styled.div<{ hover: boolean; playingNow: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,13 +26,19 @@ export const Container = styled.div<{ hover: boolean }>`
       align-items: center;
       justify-content: center;
 
-      opacity: ${(props) => (props.hover ? 1 : 0)};
-      pointer-events: ${(props) => (props.hover ? 'all' : 'none')};
+      opacity: ${(props) => (!props.playingNow ? (props.hover ? 1 : 0) : 1)};
+      pointer-events: ${(props) =>
+        !props.playingNow ? (props.hover ? 'all' : 'none') : 'none'};
       transition: opacity 0.3s;
 
       svg {
         cursor: pointer;
         filter: brightness(0.9);
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
       }
     }
   }

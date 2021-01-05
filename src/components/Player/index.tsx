@@ -9,7 +9,7 @@ import { Dispatch } from 'redux';
 import { PlayerAction } from '../../store/modules/player/actions';
 
 const Player: React.FC = () => {
-  const player: any = useSelector((state) => state);
+  const player: any = useSelector((state: any) => state.player);
   const dispatch: Dispatch = useDispatch();
 
   const fillRef = useRef<HTMLSpanElement>(null);
@@ -125,6 +125,8 @@ const Player: React.FC = () => {
       method: 'get',
       url: `/me/player/currently-playing?market=BR`,
     });
+
+    console.log(currentlyMusic);
 
     dispatch({
       type: PlayerAction.SET_MUSIC,

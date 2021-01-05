@@ -14,11 +14,10 @@ import { PlayerAction } from '../../store/modules/player/actions';
 import desktop from '../../assets/desktop.png';
 
 import { Container } from './styles';
-import { BiDesktop } from 'react-icons/bi';
 import { AiOutlineDesktop } from 'react-icons/ai';
 
 const Controllers: React.FC = () => {
-  const player: any = useSelector((state) => state);
+  const player: any = useSelector((state: any) => state.player);
   const dispatch = useDispatch();
 
   const [volumeModal, setVolumeModal] = useState(false);

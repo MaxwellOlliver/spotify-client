@@ -16,10 +16,13 @@ import { Spotify } from '../../services/spotifyApi';
 import Routes from './routes';
 import Controllers from '../../components/Controllers';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { PlaylistAction } from '../../store/modules/playlist/actions';
 
-const WrapContainer: React.FC = () => {
+const WrapContainer: React.FC<{ history: any }> = ({ history }) => {
   const [user, setUser] = useState<any>(null);
-  const [playlists, setPlaylists] = useState([]);
+  const dispatch = useDispatch();
+  const playlists: any = useSelector((state: any) => state.playlists.items);
 
   const getResources = async () => {
     const { data: user }: any = await Spotify({
@@ -32,7 +35,10 @@ const WrapContainer: React.FC = () => {
       url: `/users/${user?.id}/playlists`,
     });
 
-    setPlaylists(playlists.items);
+    dispatch({
+      type: PlaylistAction.ADD_EXISTENTS_PLAYLISTS,
+      payload: { items: playlists.items },
+    });
     setUser(user);
   };
 
@@ -44,11 +50,19 @@ const WrapContainer: React.FC = () => {
     <Container>
       <aside>
         <img src={logo} alt="logo-spotify" />
-        <Link to="/">
+        <Link
+          to="/"
+          className={history.location.pathname === '/' ? 'focused' : ''}
+        >
           <FiHome size={18} color="#fff" />
           <span>início</span>
         </Link>
-        <Link to="/recently-played">
+        <Link
+          to="/recently-played"
+          className={
+            history.location.pathname === '/recently-played' ? 'focused' : ''
+          }
+        >
           <FiClock size={18} color="#fff" />
           <span>tocadas recentemente</span>
         </Link>

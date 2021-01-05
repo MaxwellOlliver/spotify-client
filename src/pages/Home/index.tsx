@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 import Loader from '../../components/Loader';
 import Playlist from '../../components/Playlist';
 import Track from '../../components/Track';
@@ -8,17 +9,16 @@ import { Spotify } from '../../services/spotifyApi';
 import { FeaturedPlaylist, Section, Sections } from './styles';
 
 const Home: React.FC = () => {
+  const playlists: any = useSelector((state: any) => state.playlists.items);
   const [isLoading, setIsLoading] = useState(true);
   const [resources, setResources] = useState<{
     artists: { [key: string]: any };
     recentlyPlayed: Array<{ [key: string]: any }>;
     featuredPlaylists: Array<{ [key: string]: any }>;
-    playlists: Array<{ [key: string]: any }>;
   }>({
     artists: {},
     recentlyPlayed: [],
     featuredPlaylists: [],
-    playlists: [],
   });
 
   const getResources = async (): Promise<void> => {
@@ -32,11 +32,6 @@ const Home: React.FC = () => {
       url: '/me',
     });
 
-    const { data: playlists }: any = await Spotify({
-      method: 'get',
-      url: `/users/${user?.id}/playlists?limit=10`,
-    });
-
     const { data: recentlyPlayed }: any = await Spotify({
       method: 'get',
       url: `/me/player/recently-played?limit=10`,
@@ -45,7 +40,6 @@ const Home: React.FC = () => {
     setResources((state) => ({
       ...state,
       featuredPlaylists: fp.data.playlists.items,
-      playlists: playlists.items,
       recentlyPlayed: recentlyPlayed.items,
     }));
     setIsLoading(false);
@@ -157,8 +151,8 @@ const Home: React.FC = () => {
             </div>
           </div>
           <ul className="items" id="section_recently-played-ul">
-            {resources.recentlyPlayed?.map((t) => (
-              <li key={t.track.id}>
+            {resources.recentlyPlayed?.map((t, index) => (
+              <li key={index}>
                 <Track track={t.track} />
               </li>
             ))}
@@ -181,8 +175,8 @@ const Home: React.FC = () => {
             </div>
           </div>
           <ul className="items" id="section_my-playlists-ul">
-            {resources.playlists?.map((p) => (
-              <li key={p.id}>
+            {playlists?.map((p: any, index: number) => (
+              <li key={index}>
                 <Playlist playlist={p} />
               </li>
             ))}

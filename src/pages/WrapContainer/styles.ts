@@ -33,7 +33,7 @@ export const Container = styled.div`
       align-items: center;
       border-radius: 25px;
       color: #fff;
-      transition: all 0.3s;
+
       margin-bottom: 10px;
       background-color: ${theme.PRIMARY};
 
