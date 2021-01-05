@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import Loader from '../../components/Loader';
 import Playlist from '../../components/Playlist';
 import Track from '../../components/Track';
 import { Spotify } from '../../services/spotifyApi';
@@ -7,6 +8,7 @@ import { Spotify } from '../../services/spotifyApi';
 import { FeaturedPlaylist, Section, Sections } from './styles';
 
 const Home: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [resources, setResources] = useState<{
     artists: { [key: string]: any };
     recentlyPlayed: Array<{ [key: string]: any }>;
@@ -46,6 +48,7 @@ const Home: React.FC = () => {
       playlists: playlists.items,
       recentlyPlayed: recentlyPlayed.items,
     }));
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -77,6 +80,10 @@ const Home: React.FC = () => {
       ul.scrollLeft -= ul.scrollWidth;
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <FeaturedPlaylist>

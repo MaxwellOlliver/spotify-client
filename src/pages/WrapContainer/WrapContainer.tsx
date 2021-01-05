@@ -15,6 +15,7 @@ import Player from '../../components/Player';
 import { Spotify } from '../../services/spotifyApi';
 import Routes from './routes';
 import Controllers from '../../components/Controllers';
+import { Link } from 'react-router-dom';
 
 const WrapContainer: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -43,14 +44,14 @@ const WrapContainer: React.FC = () => {
     <Container>
       <aside>
         <img src={logo} alt="logo-spotify" />
-        <a href="http://" className="focused">
+        <Link to="/">
           <FiHome size={18} color="#fff" />
           <span>início</span>
-        </a>
-        <a href="http://">
+        </Link>
+        <Link to="/recently-played">
           <FiClock size={18} color="#fff" />
           <span>tocadas recentemente</span>
-        </a>
+        </Link>
         <a href="http://">
           <FiStar size={18} color="#fff" />
           <span>músicas curtidas</span>

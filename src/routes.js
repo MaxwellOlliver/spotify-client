@@ -5,7 +5,7 @@ import { WrapContainer } from './pages/WrapContainer';
 export function Routes() {
   return (
     <BrowserRouter>
-      <Route exact path="/" component={WrapContainer} />
+      <Route path="/" component={WrapContainer} />
     </BrowserRouter>
   );
 }

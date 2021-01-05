@@ -67,4 +67,29 @@ export const Container = styled.div<{ hover: boolean }>`
       -webkit-box-orient: vertical;
     }
   }
+
+  @media (max-width: 1200px) {
+    .info {
+      h3 {
+        font-size: 16px;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 1000px) {
+    .info {
+      padding: 5px;
+
+      h3 {
+        font-size: 14px;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
 `;

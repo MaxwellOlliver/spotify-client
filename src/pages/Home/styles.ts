@@ -87,7 +87,9 @@ export const Sections = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 60px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px;
 `;
 
 export const Section = styled.section`
@@ -116,6 +118,8 @@ export const Section = styled.section`
   }
 
   ul.items {
+    width: 100%;
+    max-width: 100%;
     display: flex;
     overflow: hidden;
     list-style: none;
@@ -129,11 +133,20 @@ export const Section = styled.section`
     }
   }
 
-  @media (max-width: 1300px) {
+  /* @media (max-width: 1300px) {
     ul.items {
       li {
-        min-width: 170px;
+        width: calc(100% / 4 - 15px);
+        min-width: calc(100% / 4 - 15px);
       }
     }
   }
+  @media (max-width: 1000px) {
+    ul.items {
+      li {
+        width: calc(100% / 3 - 15px);
+        min-width: calc(100% / 3 - 15px);
+      }
+    }
+  } */
 `;

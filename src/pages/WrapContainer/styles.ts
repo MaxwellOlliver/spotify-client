@@ -11,8 +11,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 16%;
-    min-width: 250px;
+    width: 20%;
+    min-width: 270px;
+    max-width: 270px;
     height: 100%;
     padding: 15px;
     background-color: ${theme.PRIMARY};
@@ -131,6 +132,8 @@ export const Container = styled.div`
       img {
         width: 100px;
         height: 100px;
+        min-width: 100px;
+        min-height: 100px;
         border-radius: 4px;
         margin-bottom: 10px;
       }
@@ -305,7 +308,7 @@ export const Container = styled.div`
 
     .content {
       width: 100%;
-      max-width: 100%;
+      max-width: calc(100vw - 270px);
       height: 100%;
       display: flex;
       flex-direction: column;
